@@ -39,9 +39,9 @@ export class PipelineStack extends cdk.Stack {
       synth: new pipelines.ShellStep('Synth', {
         input: source,
         commands: [
-          `cd cdk && npm ci && npx cdk synth ${pipelineStackId}`,
+          `npm ci && npx cdk synth ${pipelineStackId}`,
         ],
-        primaryOutputDirectory: 'cdk/cdk.out',
+        primaryOutputDirectory: 'cdk.out',
       }),
       selfMutation: true,
       crossAccountKeys: false,

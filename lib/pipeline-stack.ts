@@ -42,6 +42,10 @@ export class PipelineStack extends cdk.Stack {
           `npm ci && npx cdk synth ${pipelineStackId}`,
         ],
         primaryOutputDirectory: 'cdk.out',
+        env: {
+          GITHUB_CONNECTION_ARN: connectionArn,
+          GITHUB_REPO: repo,
+        },
       }),
       selfMutation: true,
       crossAccountKeys: false,

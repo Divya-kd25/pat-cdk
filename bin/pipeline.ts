@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+import * as dotenv from 'dotenv';
+
+// Load .env from current working directory so GITHUB_CONNECTION_ARN etc. are available
+dotenv.config();
+
 import * as cdk from 'aws-cdk-lib';
 import { PipelineStack } from '../lib/pipeline-stack';
 
@@ -19,9 +24,9 @@ const env: cdk.Environment = {
   region: process.env.CDK_DEFAULT_REGION || process.env.AWS_REGION || 'us-east-1',
 };
 
-if (!connectionArn) {
-  console.warn(
-    'Warning: githubConnectionArn not set. Set it in cdk.json context or GITHUB_CONNECTION_ARN env var before deploying pipelines.'
+if (!connectionArn || connectionArn.trim() === '') {
+  throw new Error(
+    'githubConnectionArn is required. Set it in cdk.json context ("githubConnectionArn") or export GITHUB_CONNECTION_ARN before deploying. Create a connection in AWS Console → Developer Tools → Connections.'
   );
 }
 

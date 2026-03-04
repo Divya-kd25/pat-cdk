@@ -19,6 +19,6 @@
     "@aws-cdk/core:checkSecretUsage": true,
     "@aws-cdk/core:target-partitions": ["aws", "aws-cn"],
     "githubConnectionArn": "",
-    "githubRepo": "owner/repo"
+    "githubRepo": "Divya-kd25/pat-cdk"
   }
 }
